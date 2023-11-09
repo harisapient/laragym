@@ -1,0 +1,21 @@
+name: Laravel Composer Update
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  composer-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Composer
+        run: curl -sSL https://getcomposer.org/installer | php
+
+      - name: Move Composer executable
+        run: mv composer.phar /usr/local/bin/composer
+
+      - Composer update
+        run: composer update
