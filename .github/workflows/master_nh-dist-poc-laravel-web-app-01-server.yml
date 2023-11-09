@@ -32,6 +32,9 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer update --no-progress
 
+      - name: Enable Composer Plugin
+        run: composer config --global --no-plugins allow-plugins.kylekatarnls/update-helper true
+
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
